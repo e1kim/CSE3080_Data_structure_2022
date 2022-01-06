@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int n, m;
+int arr[10];
+
+void print(vector<int> v) {
+	for (int i = 0; i < v.size(); ++i)
+	{
+		cout << v[i] << ' ';
+		
+	}
+	cout << '\n';
+	return;
+}
+void dfs(int cnt,int visited[], vector<int> v)
+{
+	if (cnt == m) {
+		print(v);
+		return;
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		if (visited[i]) continue;
+		visited[i] = 1;
+		v.push_back(arr[i]);
+		dfs(cnt + 1, visited,v);
+		v.pop_back();
+		visited[i] = 0;
+	}
+}
+int main()
+{
+	
+	int cnt;
+
+	
+	int visited[10]; // 방문
+	vector <int> v;
+
+	cin >> n >> m;
+
+	for (int i = 0; i < n; ++i)
+	{
+		arr[i] = i + 1;
+		visited[i] = 0;
+	}
+	dfs(0,visited,v);
+
+}
